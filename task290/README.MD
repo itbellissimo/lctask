@@ -34,7 +34,11 @@ All the words in s are separated by a single space.
 
 
 **Keywords**
-
+HASHMAP
 
 
 **Links:**
+There are better solution.
+https://leetcode.com/problems/word-pattern/discuss/834338/Go-Solution-Map-and-Array-0ms
+It's true. 
+We can use combine pattern and word sa key map or array to identify existing.
