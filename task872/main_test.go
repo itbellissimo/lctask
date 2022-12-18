@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/itbellissimo/treenode"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -9,64 +10,35 @@ import (
 func TestUpdateMatrix(t *testing.T) {
 
 	type leafSimilarTest struct {
-		tree1  []NilInt
-		tree2  []NilInt
+		tree1  string
+		tree2  string
 		result bool
 	}
 
 	var leafSimilarTests = []leafSimilarTest{
 		{
-			tree1: []NilInt{
-				NewInt(3),
-				NewInt(5),
-				NewInt(1),
-				NewInt(6),
-				NewInt(2),
-				NewInt(9),
-				NewInt(8),
-				NewNil(),
-				NewNil(),
-				NewInt(7),
-				NewInt(4),
-			},
-			tree2: []NilInt{
-				NewInt(3),
-				NewInt(5),
-				NewInt(1),
-				NewInt(6),
-				NewInt(7),
-				NewInt(4),
-				NewInt(2),
-				NewNil(),
-				NewNil(),
-				NewNil(),
-				NewNil(),
-				NewNil(),
-				NewNil(),
-				NewInt(9),
-				NewInt(8),
-			},
+			tree1:  "3,5,1,6,2,9,8,null,null,7,4",
+			tree2:  "3,5,1,6,7,4,2,null,null,null,null,null,null,9,8",
 			result: true,
 		},
 		{
-			tree1: []NilInt{
-				NewInt(1),
-				NewInt(2),
-				NewInt(3),
-			},
-			tree2: []NilInt{
-				NewInt(1),
-				NewInt(3),
-				NewInt(2),
-			},
+			tree1:  "1,2,3",
+			tree2:  "1,3,2",
 			result: false,
 		},
 	}
 
 	for _, test := range leafSimilarTests {
-		line := treeLine(test.tree1)
-		line2 := treeLine(test.tree2)
-		res := leafSimilar(line.treeNode(), line2.treeNode())
+		root1, err := treenode.NewTreeString(test.tree1).GetTreeNode()
+		if err != nil {
+			assert.Fail(t, err.Error())
+		}
+		root2, err := treenode.NewTreeString(test.tree2).GetTreeNode()
+		if err != nil {
+			assert.Fail(t, err.Error())
+		}
+
+		res := leafSimilar(root1, root2)
 		assert.Equal(t, res, test.result)
 	}
 }
