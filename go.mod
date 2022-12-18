@@ -2,7 +2,10 @@ module awesomeProject
 
 go 1.19
 
-require github.com/stretchr/testify v1.8.1
+require (
+	github.com/itbellissimo/treenode v0.0.0-20221218153753-79ab8a808863
+	github.com/stretchr/testify v1.8.1
+)
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
