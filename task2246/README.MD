@@ -40,3 +40,14 @@ parent represents a valid tree.
 s consists of only lowercase English letters.
 ```
 
+**Solution**
+
+```
+Step 1. Find two longest path out of n children for each node.
+Step 2. Update global max value if longestPath1+longestPath2> max.
+Step 3. Return longest path for each child node to parent node using DFS.
+
+If adjacent node letters are not equal set pathlength for children = pathlength+1.
+If adjacent node letters are equal set pathlength for children = 0.
+
+```
